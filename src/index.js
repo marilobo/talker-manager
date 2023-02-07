@@ -64,3 +64,13 @@ talkValidation, rateValidation, async (req, res) => {
   await editTalkers([...talkers]);
   return res.status(200).json(talkers[index]);
 });
+
+app.delete('/talker/:id', tokenValidation, async (req, res) => {
+  const id = +req.params.id;
+
+  const talkers = await getTalkers();
+  const filterToDelete = talkers.filter((t) => t.id !== id);
+
+  await editTalkers([...filterToDelete]);
+  return res.status(204).end();
+});
