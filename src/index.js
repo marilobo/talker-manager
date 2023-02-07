@@ -3,6 +3,8 @@ const express = require('express');
 const { getTalkers } = require('./talkerDB');
 const loginValidation = require('./middlewares/loginValidation');
 const generateToken = require('./utils/generateToken');
+const tokenValidation = require('./middlewares/tokenValidation');
+const nameValidation = require('./middlewares/nameValidation');
 
 const app = express();
 app.use(express.json());
@@ -35,4 +37,8 @@ app.get('/talker/:id', async (req, res) => {
 app.post('/login', loginValidation, async (_req, res) => {
   const token = generateToken();
   return res.status(200).json({ token });
+});
+
+app.post('/talker', tokenValidation, nameValidation, async (req, res) => {
+
 });
