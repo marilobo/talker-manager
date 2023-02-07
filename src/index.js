@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { getTalkers } = require('./talkerDB');
+const { getTalkers, getLastTalkerId, writeTalkers } = require('./talkerDB');
 const loginValidation = require('./middlewares/loginValidation');
 const generateToken = require('./utils/generateToken');
 const tokenValidation = require('./middlewares/tokenValidation');
@@ -44,5 +44,11 @@ app.post('/login', loginValidation, async (_req, res) => {
 
 app.post('/talker', tokenValidation, nameValidation, ageValidation,
 talkValidation, rateValidation, async (req, res) => {
-  
+  const id = await getLastTalkerId() + 1;
+  const newTalker = {
+    id,
+    ...req.body,
+  };
+  await writeTalkers(newTalker);
+  return res.status(201).json(newTalker);
 });
