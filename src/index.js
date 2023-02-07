@@ -5,6 +5,9 @@ const loginValidation = require('./middlewares/loginValidation');
 const generateToken = require('./utils/generateToken');
 const tokenValidation = require('./middlewares/tokenValidation');
 const nameValidation = require('./middlewares/nameValidation');
+const ageValidation = require('./middlewares/ageValidation');
+const talkValidation = require('./middlewares/talkValidation');
+const rateValidation = require('./middlewares/rateValidation');
 
 const app = express();
 app.use(express.json());
@@ -39,6 +42,7 @@ app.post('/login', loginValidation, async (_req, res) => {
   return res.status(200).json({ token });
 });
 
-app.post('/talker', tokenValidation, nameValidation, async (req, res) => {
-
+app.post('/talker', tokenValidation, nameValidation, ageValidation,
+talkValidation, rateValidation, async (req, res) => {
+  
 });
