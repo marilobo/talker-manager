@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { getTalkers, getLastTalkerId, writeTalkers } = require('./talkerDB');
+const { getTalkers, getLastTalkerId, writeTalkers, editTalkers } = require('./talkerDB');
 const loginValidation = require('./middlewares/loginValidation');
 const generateToken = require('./utils/generateToken');
 const tokenValidation = require('./middlewares/tokenValidation');
@@ -51,4 +51,16 @@ talkValidation, rateValidation, async (req, res) => {
   };
   await writeTalkers(newTalker);
   return res.status(201).json(newTalker);
+});
+
+app.put('/talker/:id', tokenValidation, nameValidation, ageValidation,
+talkValidation, rateValidation, async (req, res) => {
+  const id = +req.params.id;
+
+  const talkers = await getTalkers();
+  const index = talkers.findIndex((t) => t.id === id);
+  talkers[index] = { id, ...req.body };
+
+  await editTalkers([...talkers]);
+  return res.status(200).json(talkers[index]);
 });

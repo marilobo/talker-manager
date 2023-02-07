@@ -19,8 +19,11 @@ const getLastTalkerId = async () => {
   return id;
 };
 
+const editTalkers = async (toEdit) => fs.writeFile(path, JSON.stringify(toEdit));
+
 module.exports = {
   getTalkers,
   writeTalkers,
   getLastTalkerId,
+  editTalkers,
 };
