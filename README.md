@@ -6,10 +6,8 @@ Este é um projeto desenvolvido durante o módulo de Back-end do curso de Desenv
 
 Foi construída uma aplicação de cadastro de talkers (palestrantes) em que é possível cadastrar, visualizar, pesquisar, editar e excluir informações. Para isso:
 
-    Desenvolvi uma API de um CRUD (Create, Read, Update e Delete) de palestrantes (talkers) e;
-    Desenvolvi alguns endpoints responsáveis por ler e escrever em um arquivo utilizando o módulo fs.
-
-<details>
+  * Desenvolvi uma API de um CRUD (Create, Read, Update e Delete) de palestrantes (talkers) e;
+  * Desenvolvi alguns endpoints responsáveis por ler e escrever em um arquivo utilizando o módulo fs.
 
 <details>
 <summary><strong>Instalação</strong></summary><br />
